@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,5 +8,16 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('slf');
+  // Prevent context menu everywhere
+  @HostListener('document:contextmenu', ['$event'])
+  onRightClick(event: Event) {
+    event.preventDefault();
+  }
+
+  // Prevent long-press from triggering it on touch devices
+  @HostListener('document:touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    if (event.touches.length > 1) return; // allow pinch zoom
+    event.preventDefault();
+  }
 }

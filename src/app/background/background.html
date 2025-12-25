@@ -1,0 +1,7 @@
+<div class="background">
+    <div id="letter-container">
+        @for (letter of letters; track letter) {
+            <span class="letter" id="letter-{{letter.index}}">{{ letter.symbol }}</span>
+        }
+    </div>
+</div>
