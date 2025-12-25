@@ -3,6 +3,6 @@
 }
 
 .toolbar {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
 }

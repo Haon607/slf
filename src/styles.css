@@ -10,8 +10,8 @@
     font-family: "Quicksand", sans-serif;
     font-size: 100%;
 
-    /*outline: solid 1px #257017;*/
-    /*outline-offset: -1px;*/
+    outline: solid 1px #257017;
+    outline-offset: -1px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
