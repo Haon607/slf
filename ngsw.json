@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766705641351,
+  "timestamp": 1766706865347,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -13,9 +13,9 @@
       "urls": [
         "/slf/favicon.ico",
         "/slf/index.html",
-        "/slf/main-ALARXML4.js",
+        "/slf/main-NUL2SL6A.js",
         "/slf/manifest.webmanifest",
-        "/slf/styles-SMFVX23Z.css"
+        "/slf/styles-25F4HYG3.css"
       ],
       "patterns": []
     },
@@ -27,33 +27,19 @@
         "ignoreVary": true
       },
       "urls": [
-        "/slf/icons/icon-128x128.png",
-        "/slf/icons/icon-144x144.png",
-        "/slf/icons/icon-152x152.png",
-        "/slf/icons/icon-192x192.png",
-        "/slf/icons/icon-384x384.png",
-        "/slf/icons/icon-512x512.png",
-        "/slf/icons/icon-72x72.png",
-        "/slf/icons/icon-96x96.png"
+        "/slf/icons/Untitled392_20251226004659.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/slf/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/slf/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
-    "/slf/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
-    "/slf/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
-    "/slf/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
-    "/slf/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
-    "/slf/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
-    "/slf/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
-    "/slf/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/slf/index.html": "6db7278c462293292e1558b567c822e4420a2a4e",
-    "/slf/main-ALARXML4.js": "6db735168ef584faf69ed5afb4c41be67346ab08",
-    "/slf/manifest.webmanifest": "5ac3b63994feb59cc0555c6586bb4b811bb69f99",
-    "/slf/styles-SMFVX23Z.css": "9f385c1d33e933ce4c0cb0788991932b43a06f2d"
+    "/slf/favicon.ico": "06373c6e079937d7a03e9a6af346a4158abe3356",
+    "/slf/icons/Untitled392_20251226004659.png": "f6a196ee7a78fd144f5e1f6e03c7aa88d28bd73b",
+    "/slf/index.html": "88a1b03a15b529cec8b57a818a9d411ac31500b9",
+    "/slf/main-NUL2SL6A.js": "20162029ac0a727d9345e6324a062af1d2009055",
+    "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
+    "/slf/styles-25F4HYG3.css": "8a957474be00c82ca1eb39ebb75db73e6ddb358c"
   },
   "navigationUrls": [
     {
