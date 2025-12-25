@@ -1,3 +1,8 @@
 .body {
     height: 100vh;
 }
+
+.toolbar {
+    position: absolute;
+    bottom: 20px;
+}
