@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766769127333,
+  "timestamp": 1766769216374,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/slf/favicon.ico",
         "/slf/index.html",
-        "/slf/main-ZPP5ZGMK.js",
+        "/slf/main-HDUL7KXB.js",
         "/slf/manifest.webmanifest",
         "/slf/styles-7OTXVM66.css"
       ],
@@ -36,8 +36,8 @@
   "hashTable": {
     "/slf/favicon.ico": "06373c6e079937d7a03e9a6af346a4158abe3356",
     "/slf/icons/Untitled392_20251226004659.png": "f6a196ee7a78fd144f5e1f6e03c7aa88d28bd73b",
-    "/slf/index.html": "a64a89db5c4e6286c36f7ef91c341f4f04efb470",
-    "/slf/main-ZPP5ZGMK.js": "8b2eab63d6615457b4fb304c6e45c0e951377fc9",
+    "/slf/index.html": "3501f67bd9b7384d27422b14fcbdc268f26aea13",
+    "/slf/main-HDUL7KXB.js": "328a9d44d56f1376ef6f82032bdd63600fa427b7",
     "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
     "/slf/styles-7OTXVM66.css": "100ddbcefcb74ac984e12d62ada54e2b9c33f05a"
   },
