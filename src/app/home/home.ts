@@ -11,7 +11,7 @@ export class Home {
     @ViewChild(TimerComponent) timerComponent!: TimerComponent;
     protected time: number;
     protected currentSecond: number = 0;
-    protected countdownTimer: number = 0;
+    protected countdownTimer: string = '0';
 
     constructor(private storage: Memory) {
         this.time = storage.time.get() ?? 90;
