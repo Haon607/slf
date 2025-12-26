@@ -24,13 +24,14 @@
 }
 
 body {
-    background: repeating-linear-gradient(
+    background-color: black;
+    /*background: repeating-linear-gradient(
             45deg,
             #000000,
             #000000 50px,
             #020202 50px,
             #020202 75px
-    );
+    );*/
     font-size: 1rem;
 }
 
