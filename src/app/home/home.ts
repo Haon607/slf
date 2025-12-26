@@ -11,6 +11,7 @@ export class Home {
     @ViewChild(TimerComponent) timerComponent!: TimerComponent;
     protected time: number;
     protected currentSecond: number = 0;
+    protected countdownTimer: number = 0;
 
     constructor(private storage: Memory) {
         this.time = storage.time.get() ?? 90;
@@ -23,7 +24,7 @@ export class Home {
     protected reset() {
         this.storage.alreadyPlayedLetters.remove();
         this.storage.selectedLetter.remove();
-
+        this.timerComponent.stopTimer();
     }
 
     protected async setTime() {
@@ -71,6 +72,7 @@ export class Home {
     }
 
     private async startCountdown() {
+        
         await wait(1000);
         //1
         await wait(1000);
