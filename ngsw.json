@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766769216374,
+  "timestamp": 1766770885827,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -27,7 +27,9 @@
         "ignoreVary": true
       },
       "urls": [
-        "/slf/icons/Untitled392_20251226004659.png"
+        "/slf/icons/Untitled392_20251226004659.png",
+        "/slf/sounds/time_out.wav",
+        "/slf/sounds/time_up.wav"
       ],
       "patterns": []
     }
@@ -39,6 +41,8 @@
     "/slf/index.html": "3501f67bd9b7384d27422b14fcbdc268f26aea13",
     "/slf/main-HDUL7KXB.js": "328a9d44d56f1376ef6f82032bdd63600fa427b7",
     "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
+    "/slf/sounds/time_out.wav": "644720a46b2b749c2e4d106c15d5afcabe0012eb",
+    "/slf/sounds/time_up.wav": "cf6961da7954fda3f64a87cdc10aee48382f5876",
     "/slf/styles-7OTXVM66.css": "100ddbcefcb74ac984e12d62ada54e2b9c33f05a"
   },
   "navigationUrls": [
