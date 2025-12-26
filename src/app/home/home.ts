@@ -16,6 +16,7 @@ export class Home {
 
     protected time: number;
     protected countdownTimer: string = '0';
+    protected currentSecond = 0;
 
     /** Used to cancel countdowns */
     private roundToken = 0;
