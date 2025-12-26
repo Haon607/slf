@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766758882190,
+  "timestamp": 1766759533416,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/slf/favicon.ico",
         "/slf/index.html",
-        "/slf/main-7UDQNMRQ.js",
+        "/slf/main-POBYJPAC.js",
         "/slf/manifest.webmanifest",
         "/slf/styles-ZKGEUJAC.css"
       ],
@@ -36,8 +36,8 @@
   "hashTable": {
     "/slf/favicon.ico": "06373c6e079937d7a03e9a6af346a4158abe3356",
     "/slf/icons/Untitled392_20251226004659.png": "f6a196ee7a78fd144f5e1f6e03c7aa88d28bd73b",
-    "/slf/index.html": "a8026c75498fe1ed09fd420ecf2ee4884a9d97de",
-    "/slf/main-7UDQNMRQ.js": "450af02effb852ab071bdae76610f8e7482d8f45",
+    "/slf/index.html": "482db78416246114a4f308319e00642c32d45eef",
+    "/slf/main-POBYJPAC.js": "357ca50fa95e31e39a5173cddaa7177b96391959",
     "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
     "/slf/styles-ZKGEUJAC.css": "c0995dc3cb5fd042cb6ba02d0d351c93f9aaf905"
   },
