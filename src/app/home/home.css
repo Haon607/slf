@@ -16,3 +16,14 @@
     display: flex;
     justify-content: center;
 }
+
+#countdown-container {
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  display: flex;    
+  justify-content: center;
+  background-color: white;
+  color: black;
+  font-size: 7rem;
+}
