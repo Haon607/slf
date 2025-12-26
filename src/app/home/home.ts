@@ -72,13 +72,13 @@ export class Home {
     }
 
     private async startCountdown() {
-        
+        countdownTimer = '3';
         await wait(1000);
-        //1
+        countdownTimer = '2';
         await wait(1000);
-        //2
+        countdownTimer = '1';
         await wait(1000);
-        //3
+        countdownTimer = '0';
         await wait(1000);
 
     }
