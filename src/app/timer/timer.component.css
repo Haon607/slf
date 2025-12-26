@@ -1,6 +1,6 @@
 .timer {
   position: relative;
-  border: 2px solid #fafafa;
+  border: 20px solid #fafafa;
   overflow: hidden;
   text-align: center;
   display: flex;
@@ -19,7 +19,7 @@
   top: 0;
   left: 0;
   z-index: 1;
-  transition: width 1s ease-in-out; /* Smooth width transition */
+  transition: width 0.5s ease-in-out; /* Smooth width transition */
 }
 
 .time-display {
