@@ -11,6 +11,9 @@
                (timerEnded)="onTimerEnd()"
     ></app-timer>
 </div>
+<div id="countdown-container">
+    <span id="countdown-text">{{countdown-timer}}</span>
+</div>
 <div class="toolbar flex-row">
     <button (click)="reset()">
         <svg xmlns="http://www.w3.org/2000/svg" height="2rem" viewBox="0 -960 960 960" width="100%" fill="currentColor">
