@@ -1,4 +1,16 @@
 <app-background></app-background>
+<div class="headbar">
+    <app-timer class="timer"
+               [initialTime]="time"
+               [warningThreshold]="10"
+               [progressBarColor]="'#252525'"
+               [warningColor]="'#5a0606'"
+               [textColor]="'#FFFFFF'"
+               [warningTextColor]="'#d25a0b'"
+               (currentSecond)="currentSecond"
+               (timerEnded)="onTimerEnd()"
+    ></app-timer>
+</div>
 <div class="toolbar flex-row">
     <button (click)="reset()">
         <svg xmlns="http://www.w3.org/2000/svg" height="2rem" viewBox="0 -960 960 960" width="100%" fill="currentColor">

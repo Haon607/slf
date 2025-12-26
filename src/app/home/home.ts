@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Background } from "../background/background";
 import { Memory } from "../service/memory.service";
-import { shuffleArray } from "../utils";
+import { shuffleArray, wait } from "../utils";
+import { TimerComponent } from "../timer/timer.component";
 
 @Component({
-    selector: 'app-home', imports: [Background], templateUrl: './home.html', styleUrl: './home.css', standalone: true
+    selector: 'app-home', imports: [Background, TimerComponent], templateUrl: './home.html', styleUrl: './home.css', standalone: true
 })
 export class Home {
+    @ViewChild(TimerComponent) timerComponent!: TimerComponent;
     protected time: number;
+    protected currentSecond: number = 0;
 
     constructor(private storage: Memory) {
         this.time = storage.time.get() ?? 90;
+    }
+
+    async startTimer() {
+        this.timerComponent.startTimer()
     }
 
     protected reset() {
@@ -19,7 +26,7 @@ export class Home {
 
     }
 
-    protected setTime() {
+    protected async setTime() {
         var input: string | null;
         do {
             input = prompt("Zeit in Sekunden", this.time + "");
@@ -27,33 +34,31 @@ export class Home {
 
         this.time = Number(input);
         this.storage.time.set(this.time);
+        this.timerComponent.modifyTimer(this.time);
+    }
+
+    protected async start() {
+        this.selectLetter();
+        await this.startCountdown();
+        await this.startTimer();
 
     }
 
-    protected start() {
+    private selectLetter() {
+        this.timerComponent.resetTimer();
+
         const alreadyPlayed = this.storage.alreadyPlayedLetters.get() ?? [];
 
         const selected = this.storage.selectedLetter.get();
         if (selected) {
-            this.storage.alreadyPlayedLetters.set([
-                ...alreadyPlayed,
-                {
-                    symbol: selected.symbol,
-                    index: alreadyPlayed.length
-                }
-            ]);
+            this.storage.alreadyPlayedLetters.set([...alreadyPlayed, {
+                symbol: selected.symbol, index: alreadyPlayed.length
+            }]);
         }
 
-        console.log(this.storage.alreadyPlayedLetters.get());
+        const allLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-        const allLetters = [
-            'A','B','C','D','E','F','G','H','I','J','K','L','M',
-            'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-        ];
-
-        const possibleLetters = allLetters.filter(
-            letter => !alreadyPlayed.some(played => played.symbol === letter)
-        );
+        const possibleLetters = allLetters.filter(letter => !alreadyPlayed.some(played => played.symbol === letter));
 
         if (possibleLetters.length === 0) {
             console.warn('No letters left to play');
@@ -63,5 +68,20 @@ export class Home {
         this.storage.selectedLetter.set({
             symbol: shuffleArray(possibleLetters)[0]
         });
+    }
+
+    private async startCountdown() {
+        await wait(1000);
+        //1
+        await wait(1000);
+        //2
+        await wait(1000);
+        //3
+        await wait(1000);
+
+    }
+
+    protected onTimerEnd() {
+
     }
 }

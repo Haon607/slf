@@ -5,9 +5,14 @@
 .toolbar {
     position: fixed;
     bottom: 10px;
-}
-
-.toolbar {
     justify-content: space-around;
     width: 100%;
+}
+
+.headbar {
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

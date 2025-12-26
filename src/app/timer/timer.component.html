@@ -1,0 +1,18 @@
+<div
+  class="timer"
+>
+  <div
+    class="progress-bar"
+    [style.background-color]="isWarning ? warningColor : progressBarColor"
+    [style.width.%]="(timeLeft / initialTime) * 100"
+  ></div>
+    <div class="time-display"
+        #timeText
+        [ngStyle]="{
+    color: textColor
+  }"
+    >
+        {{ pipeTime(timeLeft) }}
+    </div>
+
+</div>

@@ -8,3 +8,7 @@ export function shuffleArray<T>(array: T[]): T[] {
     }
     return array;
 }
+
+export async function wait(forMs: number) {
+    await new Promise(resolve => setTimeout(resolve, forMs));
+}
