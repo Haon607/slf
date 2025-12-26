@@ -5,30 +5,59 @@ import { shuffleArray, wait } from "../utils";
 import { TimerComponent } from "../timer/timer.component";
 
 @Component({
-    selector: 'app-home', imports: [Background, TimerComponent], templateUrl: './home.html', styleUrl: './home.css', standalone: true
+    selector: 'app-home',
+    imports: [Background, TimerComponent],
+    templateUrl: './home.html',
+    styleUrl: './home.css',
+    standalone: true
 })
 export class Home {
     @ViewChild(TimerComponent) timerComponent!: TimerComponent;
+
     protected time: number;
-    protected currentSecond: number = 0;
     protected countdownTimer: string = '0';
+
+    /** Used to cancel countdowns */
+    private roundToken = 0;
+
+    /** Sounds */
+    private preSound = new Audio('sounds/countdown.wav');
+    private goSound = new Audio('sounds/go.wav');
 
     constructor(private storage: Memory) {
         this.time = storage.time.get() ?? 90;
     }
 
-    async startTimer() {
-        this.timerComponent.startTimer()
+    /* =======================
+       PUBLIC CONTROLS
+    ======================== */
+
+    protected async start() {
+        // Cancel anything currently running
+        this.stopAll();
+
+        // New round token
+        const token = ++this.roundToken;
+
+        this.selectLetter();
+
+        const completed = await this.startCountdown(token);
+        if (!completed) return;
+
+        this.goSound.currentTime = 0;
+        this.goSound.play();
+
+        this.timerComponent.startTimer();
     }
 
     protected reset() {
+        this.stopAll();
         this.storage.alreadyPlayedLetters.remove();
         this.storage.selectedLetter.remove();
-        this.timerComponent.stopTimer();
     }
 
     protected async setTime() {
-        var input: string | null;
+        let input: string | null;
         do {
             input = prompt("Zeit in Sekunden", this.time + "");
         } while (!Number(input) || Number(input) < 15);
@@ -38,31 +67,43 @@ export class Home {
         this.timerComponent.modifyTimer(this.time);
     }
 
-    protected async start() {
-        this.selectLetter();
-        await this.startCountdown();
-        await this.startTimer();
+    protected onTimerEnd() {
+        new Audio('sounds/time_up.wav').play();
+    }
 
+    /* =======================
+       INTERNAL LOGIC
+    ======================== */
+
+    private stopAll() {
+        // Invalidate running countdown
+        this.roundToken++;
+        this.countdownTimer = '0';
+
+        // Stop timer immediately
+        if (this.timerComponent) {
+            this.timerComponent.stopTimer();
+            this.timerComponent.resetTimer();
+        }
     }
 
     private selectLetter() {
-        this.timerComponent.resetTimer();
-
         const alreadyPlayed = this.storage.alreadyPlayedLetters.get() ?? [];
-
         const selected = this.storage.selectedLetter.get();
+
         if (selected) {
-            this.storage.alreadyPlayedLetters.set([...alreadyPlayed, {
-                symbol: selected.symbol, index: alreadyPlayed.length
-            }]);
+            this.storage.alreadyPlayedLetters.set([
+                ...alreadyPlayed,
+                { symbol: selected.symbol, index: alreadyPlayed.length }
+            ]);
         }
 
-        const allLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-        const possibleLetters = allLetters.filter(letter => !alreadyPlayed.some(played => played.symbol === letter));
+        const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const possibleLetters = allLetters.filter(
+            l => !alreadyPlayed.some(p => p.symbol === l)
+        );
 
         if (possibleLetters.length === 0) {
-            console.warn('No letters left to play');
             alert("Keine Buchstaben übrig!");
             return;
         }
@@ -72,19 +113,23 @@ export class Home {
         });
     }
 
-    private async startCountdown() {
-        this.countdownTimer = '3';
-        await wait(1000);
-        this.countdownTimer = '2';
-        await wait(1000);
-        this.countdownTimer = '1';
-        await wait(1000);
+    private async startCountdown(token: number): Promise<boolean> {
+        for (const value of ['3', '2', '1']) {
+            if (token !== this.roundToken) return false;
+
+            this.countdownTimer = value;
+            this.preSound.currentTime = 0;
+            this.preSound.play();
+
+            await wait(1000);
+        }
+
+        if (token !== this.roundToken) return false;
+
+        this.countdownTimer = 'GO';
+        await wait(300);
+
         this.countdownTimer = '0';
-        await wait(1000);
-
-    }
-
-    protected onTimerEnd() {
-        new Audio('sounds/time_up.wav').play();
+        return true;
     }
 }
