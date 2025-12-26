@@ -63,6 +63,7 @@ export class Home {
 
         if (possibleLetters.length === 0) {
             console.warn('No letters left to play');
+            alert("Keine Buchstaben übrig!");
             return;
         }
 
