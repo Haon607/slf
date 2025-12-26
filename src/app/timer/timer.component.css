@@ -10,7 +10,7 @@
   transition: background-color 0.2s ease-in-out; /* Smooth background color transition */
   width: 80vw;
   height: 100%;
-  font-size: 10rem;
+  font-size: 5rem;
 }
 
 .progress-bar {
