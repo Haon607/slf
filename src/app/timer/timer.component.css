@@ -1,7 +1,6 @@
 .timer {
   position: relative;
-  border: 2px solid #ddd;
-  border-radius: 500px;
+  border: 2px solid #fafafa;
   overflow: hidden;
   text-align: center;
   display: flex;
