@@ -61,7 +61,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       if (this.timeLeft <= this.warningThreshold) {
         this.isWarning = true;
         this.animateFlash();
-        new Audio('/audio/timer/running_out.mp3').play();
+        new Audio('/sounds/time_out.wav').play();
       } else {
         this.isWarning = false;
         this.resetTextColor();
