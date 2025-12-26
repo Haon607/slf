@@ -1,7 +1,8 @@
 <div class="background">
     <div id="letter-container">
-        @for (letter of letters; track letter) {
-            <span class="letter" id="letter-{{letter.index}}">{{ letter.symbol }}</span>
+        @for (bgletter of letters; track bgletter.index) {
+            <span class="letter" id="letter-{{bgletter.index}}">{{ bgletter.symbol }}</span>
         }
+        <span class="letter" id="latest-letter">{{ letter }}</span>
     </div>
 </div>

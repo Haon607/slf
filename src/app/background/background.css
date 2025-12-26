@@ -25,3 +25,7 @@
     font-size: 30rem;
     visibility: hidden;
 }
+
+#latest-letter {
+    visibility: visible;
+}

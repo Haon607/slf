@@ -6,3 +6,8 @@
     position: fixed;
     bottom: 10px;
 }
+
+.toolbar {
+    justify-content: space-around;
+    width: 100%;
+}

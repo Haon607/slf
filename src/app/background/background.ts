@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import gsap from "gsap";
 import { Letter } from "../service/letter";
+import { Memory } from "../service/memory.service";
 
 @Component({
     selector: 'app-background',
@@ -11,34 +12,32 @@ import { Letter } from "../service/letter";
 })
 export class Background implements AfterViewInit {
 
-    letters = [
-        {symbol: 'A', index: 0},
-        {symbol: 'B', index: 1},
-        {symbol: 'C', index: 2},
-        {symbol: 'D', index: 3},
-        {symbol: 'E', index: 4},
-        {symbol: 'F', index: 5},
-        {symbol: 'G', index: 6},
-        {symbol: 'H', index: 7},
-        {symbol: 'I', index: 8},
-        {symbol: 'J', index: 9},
-        {symbol: 'K', index: 10},
-        {symbol: 'L', index: 12},
-        {symbol: 'M', index: 13},
-        {symbol: 'N', index: 14},
-        {symbol: 'O', index: 15},
-        {symbol: 'P', index: 16},
-        {symbol: 'Q', index: 17},
-    ];
+    protected letters: Letter[] = [];
+    protected letter: string = '';
 
-    constructor(private el: ElementRef) {
-        this.letters = []
-        for (let i = 0; i < 15; i++) {
-            this.letters.push({symbol: (i % 10) + "", index: i})
-        }
+    constructor(private el: ElementRef, private storage: Memory) {
+        this.letter = storage.selectedLetter.get()?.symbol ?? '';
+        this.letters = storage.alreadyPlayedLetters.get() ?? [];
+
+        storage.alreadyPlayedLetters.changeSubject.subscribe(value => {
+            if (value && value.length - this.letters.length === 1) {
+                this.letters = value ?? []
+                this.positionLetter(value[value.length - 1])
+            } else
+                this.letters = value ?? []
+
+        });
+        storage.selectedLetter.changeSubject.subscribe(value => {
+            if (!value) this.letter = '';
+            else {
+                gsap.set('#latest-letter', {autoAlpha: 0})
+                this.letter = value.symbol;
+                gsap.to('#latest-letter', {autoAlpha: 1})
+            }
+        });
     }
 
-    ngAfterViewInit(): void {
+    async ngAfterViewInit() {
         this.positionLetters();
     }
 
@@ -57,24 +56,26 @@ export class Background implements AfterViewInit {
         return min + num * (max - min);
     }
 
-    private async positionLetters() {
+    private positionLetters() {
+        console.log(this.letters)
+        for (const letter of this.letters.sort((a, b) => a.index! - b.index!)) {
+            this.positionLetter(letter);
+        }
+    }
+
+    private async positionLetter(letter: Letter) {
         const container = this.el.nativeElement.querySelector('#letter-container');
         const rect = container.getBoundingClientRect();
 
         const width = rect.width;
         const height = rect.height;
 
-        for (const letter of this.letters.sort((a, b) => a.index - b.index)) {
-            this.positionLetter(letter, width, height);
-            await new Promise(resolve => setTimeout(resolve, 100));
-        }
-
-    }
-
-    private positionLetter(letter: Letter, width: number, height: number): void {
         const SPACE_MODIFIER = 1.2;
 
         if (letter.index === undefined) throw new Error(`NO INDEX IN LETTER!\n` + letter.symbol);
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+
         gsap.to(`#letter-${letter.index}`, {
             x: this.randomGaussian((width / SPACE_MODIFIER) * -1, width / SPACE_MODIFIER),
             y: this.randomGaussian((height / SPACE_MODIFIER) * -1, height / SPACE_MODIFIER),
@@ -82,6 +83,7 @@ export class Background implements AfterViewInit {
             color: "#888888AA",
             duration: 1,
             autoAlpha: 1,
+            scale: 0.5,
             ease: "power2.out"
         });
     }
