@@ -85,6 +85,6 @@ export class Home {
     }
 
     protected onTimerEnd() {
-
+        new Audio('/sounds/time_up.wav').play();
     }
 }
