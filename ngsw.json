@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766760699261,
+  "timestamp": 1766762088438,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/slf/favicon.ico",
         "/slf/index.html",
-        "/slf/main-YDQ3XKBG.js",
+        "/slf/main-PHYWBSJN.js",
         "/slf/manifest.webmanifest",
         "/slf/styles-ZKGEUJAC.css"
       ],
@@ -36,8 +36,8 @@
   "hashTable": {
     "/slf/favicon.ico": "06373c6e079937d7a03e9a6af346a4158abe3356",
     "/slf/icons/Untitled392_20251226004659.png": "f6a196ee7a78fd144f5e1f6e03c7aa88d28bd73b",
-    "/slf/index.html": "801b0d208ed683b342dfb80baa1e81c2022f73c6",
-    "/slf/main-YDQ3XKBG.js": "d80677d127892dabc7a6919b3d80d37992c75721",
+    "/slf/index.html": "5c508d0d76157269aafe2cacfda889d01562d06b",
+    "/slf/main-PHYWBSJN.js": "f8cd2183c439e377d3e9b9611a0edcbbc5d5a240",
     "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
     "/slf/styles-ZKGEUJAC.css": "c0995dc3cb5fd042cb6ba02d0d351c93f9aaf905"
   },
