@@ -7,7 +7,7 @@
                [warningColor]="'#5a0606'"
                [textColor]="'#FFFFFF'"
                [warningTextColor]="'#d25a0b'"
-               (currentSecond)="currentSecond"
+               (currentSecond)="onSecondChange($event)"
                (timerEnded)="onTimerEnd()"
     ></app-timer>
 </div>

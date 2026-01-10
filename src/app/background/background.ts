@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef } from '@angular/core';
 import gsap from "gsap";
 import { Letter } from "../service/letter";
 import { Memory } from "../service/memory.service";
@@ -15,14 +15,15 @@ export class Background implements AfterViewInit {
     protected letters: Letter[] = [];
     protected letter: string = '';
 
-    constructor(private el: ElementRef, private storage: Memory) {
+    constructor(private el: ElementRef, private storage: Memory, private cdr: ChangeDetectorRef) {
         this.letter = storage.selectedLetter.get()?.symbol ?? '';
         this.letters = storage.alreadyPlayedLetters.get() ?? [];
 
         storage.alreadyPlayedLetters.changeSubject.subscribe(value => {
             if (value && value.length - this.letters.length === 1) {
-                this.letters = value ?? []
-                this.positionLetter(value[value.length - 1])
+                this.letters = value ?? [];
+                this.positionLetter(value[value.length - 1]);
+                gsap.to('#latest-letter', {autoAlpha: 0})
             } else
                 this.letters = value ?? []
 
@@ -30,8 +31,13 @@ export class Background implements AfterViewInit {
         storage.selectedLetter.changeSubject.subscribe(value => {
             if (!value) this.letter = '';
             else {
-                gsap.set('#latest-letter', {autoAlpha: 0})
+                if (value.symbol === '') {
+                    this.letter = '';
+                    gsap.to('#latest-letter', {autoAlpha: 0});
+                    return;
+                }
                 this.letter = value.symbol;
+                this.cdr.detectChanges();
                 gsap.to('#latest-letter', {autoAlpha: 1})
             }
         });
@@ -84,6 +90,7 @@ export class Background implements AfterViewInit {
             duration: 1,
             autoAlpha: 1,
             scale: 0.5,
+            filter: "blur(50px)",
             ease: "power2.out"
         });
     }
