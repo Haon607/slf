@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1766773034356,
+  "timestamp": 1768069090955,
   "index": "/slf/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/slf/favicon.ico",
         "/slf/index.html",
-        "/slf/main-NTOP37TN.js",
+        "/slf/main-AEAMDTZE.js",
         "/slf/manifest.webmanifest",
         "/slf/styles-7OTXVM66.css"
       ],
@@ -27,11 +27,7 @@
         "ignoreVary": true
       },
       "urls": [
-        "/slf/icons/Untitled392_20251226004659.png",
-        "/slf/sounds/countdown.wav",
-        "/slf/sounds/go.wav",
-        "/slf/sounds/time_out.wav",
-        "/slf/sounds/time_up.wav"
+        "/slf/icons/Untitled392_20251226004659.png"
       ],
       "patterns": []
     }
@@ -40,13 +36,9 @@
   "hashTable": {
     "/slf/favicon.ico": "06373c6e079937d7a03e9a6af346a4158abe3356",
     "/slf/icons/Untitled392_20251226004659.png": "f6a196ee7a78fd144f5e1f6e03c7aa88d28bd73b",
-    "/slf/index.html": "ee6a438056afb736e0ff5dec1aa84ce205039378",
-    "/slf/main-NTOP37TN.js": "82db420a5c47fe6964f4cc5a41ea1c9e0410089f",
+    "/slf/index.html": "6cbd4bd2df7c28bd69ef1e55dcda7da239e3a39e",
+    "/slf/main-AEAMDTZE.js": "1c9dc7923f9c2986b580f88535770566d1a85022",
     "/slf/manifest.webmanifest": "0fd4129365a76ea9e2c5e6efc2429ea332316d4b",
-    "/slf/sounds/countdown.wav": "0845e85335ea26a4ea6bec3194456bcebd8855d9",
-    "/slf/sounds/go.wav": "7df048d2abad23de47104e7442a7c90760ebe7af",
-    "/slf/sounds/time_out.wav": "644720a46b2b749c2e4d106c15d5afcabe0012eb",
-    "/slf/sounds/time_up.wav": "cf6961da7954fda3f64a87cdc10aee48382f5876",
     "/slf/styles-7OTXVM66.css": "100ddbcefcb74ac984e12d62ada54e2b9c33f05a"
   },
   "navigationUrls": [
