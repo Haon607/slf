@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { Background } from "../background/background";
-import { Memory } from "../service/memory.service";
-import { shuffleArray, wait } from "../utils";
-import { TimerComponent } from "../timer/timer.component";
+import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {Background} from "../background/background";
+import {Memory} from "../service/memory.service";
+import {shuffleArray, wait} from "../utils";
+import {TimerComponent} from "../timer/timer.component";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -13,17 +14,18 @@ import { TimerComponent } from "../timer/timer.component";
 })
 export class Home {
     @ViewChild(TimerComponent) timerComponent!: TimerComponent;
+    protected countdownTimer: string = '0'; /*TODO*/
+    protected disable = false;
     protected time: number;
-    protected countdownTimer: string = '0';
     protected timeRunningOut = new Audio('sounds/timers_up_countdown.mp3');
     private countdownsRunning: HTMLAudioElement[] = [];
 
-    constructor(private storage: Memory) {
+    constructor(
+        private storage: Memory,
+        private cdr: ChangeDetectorRef,
+        private router: Router,
+    ) {
         this.time = storage.time.get() ?? 90;
-    }
-
-    async startTimer() {
-        this.timerComponent.startTimer()
     }
 
     protected reset() {
@@ -44,7 +46,10 @@ export class Home {
     }
 
     protected async start() {
+        this.disable = true;
         await this.selectLetter();
+        this.disable = false;
+        this.cdr.detectChanges();
         await this.startCountdown();
     }
 
@@ -64,6 +69,7 @@ export class Home {
         this.timeRunningOut.pause();
 
         this.countdownsRunning.forEach(countdown => countdown.pause());
+        this.countdownsRunning = [];
 
         const alreadyPlayed = this.storage.alreadyPlayedLetters.get() ?? [];
 
@@ -89,6 +95,7 @@ export class Home {
         this.storage.selectedLetter.set({
             symbol: shuffleArray(possibleLetters)[0],
         });
+
         new Audio("sounds/positive.mp3").play();
         await wait(500);
     }
@@ -101,10 +108,9 @@ export class Home {
 
         while (!countdownAudio.paused) {
             if (countdownAudio.currentTime > 3) {
-                await this.startTimer();
+                this.timerComponent.startTimer();
                 await wait(2000);
             }
-
             await wait(10);
         }
     }
@@ -115,5 +121,9 @@ export class Home {
 
         do await wait(100);
         while (scrambleAudio.currentTime < 3);
+    }
+
+    protected setLetters() {
+        this.router.navigateByUrl('select');
     }
 }
