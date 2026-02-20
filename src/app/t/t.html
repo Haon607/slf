@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title></title>
+</head>
+<body>
+<button id="x">Buton</button>
+
+<script>
+    const button = document.getElementById('x');
+    const ws = new WebSocket('ws://ws.voidlesity.dev:80');
+    ws.addEventListener("open", () => {
+        button.addEventListener('click', (e) => {
+            ws.send(JSON.stringify({
+                event: 'trigger_mouse'
+            }));
+        })
+    })
+</script>
+</body>
+</html>
