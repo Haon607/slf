@@ -7,12 +7,13 @@ import {Memory} from '../service/memory.service';
     imports: [],
     templateUrl: './select.html',
     styleUrl: './select.css',
+    standalone: true
 })
 export class Select {
     constructor(
         private router: Router,
         private memory: Memory,
     ) {
-        memory.excludedLetters.get()
+        // memory.excludedLetters.get()
     }
 }
