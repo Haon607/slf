@@ -6,5 +6,5 @@ import { T } from "./t/t";
 export const routes: Routes = [
     {path: '', component: Home},
     {path: 'select', component: Select},
-    {path: '/ttt', component: T}
+    {path: 'ttt', component: T}
 ];
