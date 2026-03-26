@@ -71,18 +71,26 @@ export class Home {
         this.countdownsRunning.forEach(countdown => countdown.pause());
         this.countdownsRunning = [];
 
-        const alreadyPlayed = this.storage.alreadyPlayedLetters.get() ?? [];
+        let alreadyPlayed = this.storage.alreadyPlayedLetters.get() ?? [];
 
         const selected = this.storage.selectedLetter.get();
         if (selected) {
-            this.storage.alreadyPlayedLetters.set([...alreadyPlayed, {
+            alreadyPlayed = [...alreadyPlayed, {
                 symbol: selected.symbol, index: alreadyPlayed.length
-            }]);
+            }]
+            this.storage.alreadyPlayedLetters.set(alreadyPlayed);
+
         }
 
-        const allLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        const allLetters =
+            this.storage.allLetters.get()!
+                .filter(letter => letter.enabled)
+                .map(letter => letter.symbol);
 
-        const possibleLetters = allLetters.filter(letter => !alreadyPlayed.some(played => played.symbol === letter));
+        const possibleLetters =
+            allLetters
+                .filter(letter => !alreadyPlayed
+                    .some(played => played.symbol === letter));
 
         if (possibleLetters.length === 0) {
             console.warn('No letters left to play');

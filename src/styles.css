@@ -1,6 +1,4 @@
 @import './global-styles/buttons.css';
-/*@import './global-styles/inputs.css';
-@import './global-styles/vars.css';*/
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap');
@@ -11,8 +9,8 @@
     font-family: "Quicksand", sans-serif;
     font-size: 100%;
 
-/*    outline: solid 1px #257017;
-    outline-offset: -1px;*/
+    /*    outline: solid 1px #257017;
+        outline-offset: -1px;*/
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -25,13 +23,6 @@
 
 body {
     background-color: black;
-    /*background: repeating-linear-gradient(
-            45deg,
-            #000000,
-            #000000 50px,
-            #020202 50px,
-            #020202 75px
-    );*/
     font-size: 1rem;
 }
 
@@ -70,9 +61,9 @@ body {
 }
 
 .chivo-mono {
-  font-family: "Chivo Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: bolder;
-  font-style: normal;
+    font-family: "Chivo Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: bolder;
+    font-style: normal;
 }
 

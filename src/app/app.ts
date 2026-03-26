@@ -22,7 +22,7 @@ export class App {
     event.preventDefault();
   }
 
-  constructor(private memory: Memory) {
+  constructor(private readonly memory: Memory) {
       if (memory.allLetters.get() != undefined) return;
       memory.allLetters.set([
           {symbol: 'A', enabled: true, alreadyPlayed: false},

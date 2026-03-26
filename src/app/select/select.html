@@ -1,6 +1,25 @@
-<div>
-<!--    @for ()-->
-    <div>
-
+<div style="display: flex; flex-direction: column; height: 100vh">
+    <div id="letterbox-container">
+        @for (letter of letters; track letter) {
+            <button
+                (click)="letter.enabled = !letter.enabled"
+                [ngStyle]="{'filter': letter.enabled ? 'invert(0%)' : 'invert(80%)'}"
+                class="letterbox"
+            >
+                {{ letter.symbol }}
+            </button>
+        }
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button
+            (click)="saveAndReturn()"
+            id="save-button"
+        >
+            <svg fill="currentColor" height="2rem" viewBox="0 -960 960 960" width="100%"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM565-275q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/>
+            </svg>
+        </button>
     </div>
 </div>

@@ -1,0 +1,21 @@
+#letterbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
+#save-button {
+    width: 90%;
+    text-align: center;
+}
+
+.letterbox {
+    font-weight: bold;
+    width:  4rem;
+    height: 4rem;
+    margin: 5px 10px;
+}
