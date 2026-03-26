@@ -21,10 +21,22 @@
   position: fixed;
   top: 10px;
   width: 100%;
-  display: flex;    
+  display: flex;
   justify-content: center;
   background-color: white;
   color: black;
   font-size: 7rem;
   visibility: hidden;
+}
+
+#select-letter-container {
+    display: flex;
+    position: absolute;
+    left: -30rem;
+    top: -30rem;
+}
+
+.letter {
+    position: absolute;
+    font-size: 30rem;
 }

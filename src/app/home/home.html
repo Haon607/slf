@@ -36,3 +36,8 @@
         </svg>
     </button>
 </div>
+<div id="select-letter-container">
+    @for (letter of possibleLetters; track letter) {
+        <span id="possible-letter-{{letter.index}}" class="letter">{{letter.symbol}}</span>
+    }
+</div>

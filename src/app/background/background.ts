@@ -91,7 +91,7 @@ export class Background implements AfterViewInit {
             autoAlpha: 1,
             scale: 0.5,
             filter: "blur(15px)",
-            ease: "power2.out"
+            ease: "power3.out"
         });
     }
 }

@@ -4,6 +4,9 @@ import {Memory} from "../service/memory.service";
 import {shuffleArray, wait} from "../utils";
 import {TimerComponent} from "../timer/timer.component";
 import {Router} from '@angular/router';
+import {Letter} from '../service/letter';
+import gsap from "gsap";
+
 
 @Component({
     selector: 'app-home',
@@ -19,6 +22,7 @@ export class Home {
     protected time: number;
     protected timeRunningOut = new Audio('sounds/timers_up_countdown.mp3');
     private countdownsRunning: HTMLAudioElement[] = [];
+    protected possibleLetters: Letter[] = [];
 
     constructor(
         private storage: Memory,
@@ -85,12 +89,11 @@ export class Home {
         const allLetters =
             this.storage.allLetters.get()!
                 .filter(letter => letter.enabled)
-                .map(letter => letter.symbol);
 
         const possibleLetters =
             allLetters
                 .filter(letter => !alreadyPlayed
-                    .some(played => played.symbol === letter));
+                    .some(played => played.symbol === letter.symbol));
 
         if (possibleLetters.length === 0) {
             console.warn('No letters left to play');
@@ -98,11 +101,14 @@ export class Home {
             return;
         }
 
-        await this.letterSelectAnimation(possibleLetters);
+        shuffleArray(possibleLetters);
+
+        await this.letterSelectAnimation([...possibleLetters]);
 
         this.storage.selectedLetter.set({
-            symbol: shuffleArray(possibleLetters)[0],
+            symbol: possibleLetters[0].symbol
         });
+
 
         new Audio("sounds/positive.mp3").play();
         await wait(500);
@@ -123,9 +129,46 @@ export class Home {
         }
     }
 
-    private async letterSelectAnimation(letters: string[]) {
+
+    private async letterSelectAnimation(letters: Letter[]) {
+        letters.reverse();
+
+        let i = 0;
+        for (const letter of letters) {
+            letter.index = i;
+            i++;
+        }
+
+        const selectLetterAnimation = async (letters: Letter[]) => {
+            const tl = gsap.timeline();
+
+            letters.forEach((letter, index) => {
+                const el = document.getElementById('possible-letter-' + letter.index);
+
+                if (!el) return; // safety check
+
+                const rect = el.getBoundingClientRect();
+
+                tl.to(el, {
+                    x: window.innerWidth - rect.right,
+                    y: window.innerHeight - rect.bottom + rect.height,
+                    duration: 1,
+                    ease: "power2.inOut",
+                    delay: index * 0.1
+                }, 0);/*TODO varience*/
+            });
+
+            return tl;
+        };
+
+        this.possibleLetters = letters;
+        this.cdr.detectChanges();
+
         const scrambleAudio = new Audio('sounds/scramble.mp3');
         scrambleAudio.play();
+        await wait(100);
+
+        await selectLetterAnimation(letters);
 
         do await wait(100);
         while (scrambleAudio.currentTime < 3);
