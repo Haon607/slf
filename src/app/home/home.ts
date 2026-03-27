@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {Background} from "../background/background";
 import {Memory} from "../service/memory.service";
-import {shuffleArray, wait} from "../utils";
+import { randomNumber, shuffleArray, wait } from "../utils";
 import {TimerComponent} from "../timer/timer.component";
 import {Router} from '@angular/router';
 import {Letter} from '../service/letter';
@@ -131,6 +131,8 @@ export class Home {
 
 
     private async letterSelectAnimation(letters: Letter[]) {
+        gsap.to('#select-letter-container', {autoAlpha: 1})
+
         letters.reverse();
 
         let i = 0;
@@ -142,20 +144,30 @@ export class Home {
         const selectLetterAnimation = async (letters: Letter[]) => {
             const tl = gsap.timeline();
 
+            const totalTime = 3.5;
+            const count = letters.length;
+
+            if (count === 0) return tl;
+
+            const duration = totalTime * 0.5;
+
+            const maxStartTime = totalTime - duration;
+            const stagger = count > 1 ? maxStartTime / (count - 1) : 0;
+
             letters.forEach((letter, index) => {
                 const el = document.getElementById('possible-letter-' + letter.index);
-
-                if (!el) return; // safety check
+                if (!el) return;
 
                 const rect = el.getBoundingClientRect();
 
                 tl.to(el, {
-                    x: window.innerWidth - rect.right,
-                    y: window.innerHeight - rect.bottom + rect.height,
-                    duration: 1,
-                    ease: "power2.inOut",
-                    delay: index * 0.1
-                }, 0);/*TODO varience*/
+                    x: randomNumber(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
+                    y: (window.innerHeight - rect.bottom + rect.height) * (letters.length - 1 === letter.index ? 0.5 : 1),
+                    rotate: randomNumber(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
+                    duration: duration,
+                    autoAlpha: (letters.length - 1 === letter.index ? 0.5 : 0),
+                    ease: "power2.inOut"
+                }, index * stagger);
             });
 
             return tl;
@@ -172,6 +184,8 @@ export class Home {
 
         do await wait(100);
         while (scrambleAudio.currentTime < 3);
+
+        gsap.to('#select-letter-container', {autoAlpha: 0})
     }
 
     protected setLetters() {

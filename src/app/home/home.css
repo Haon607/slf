@@ -1,12 +1,9 @@
-.body {
-    height: 100vh;
-}
-
 .toolbar {
     position: fixed;
     bottom: 10px;
     justify-content: space-around;
     width: 100%;
+    z-index: 10;
 }
 
 .headbar {
@@ -15,6 +12,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 10;
 }
 
 #countdown-container {
@@ -32,8 +30,9 @@
 #select-letter-container {
     display: flex;
     position: absolute;
-    left: -30rem;
-    top: -30rem;
+    width: 100%;
+    justify-content: center;
+    top: -36rem;
 }
 
 .letter {

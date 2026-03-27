@@ -12,3 +12,7 @@ export function shuffleArray<T>(array: T[]): T[] {
 export async function wait(forMs: number) {
     await new Promise(resolve => setTimeout(resolve, forMs));
 }
+
+export function randomNumber(from: number, to: number): number {
+    return Math.floor(Math.random() * (to - from + 1) + from);
+}
