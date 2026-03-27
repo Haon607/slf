@@ -32,10 +32,12 @@
     position: absolute;
     width: 100%;
     justify-content: center;
-    top: -36rem;
+    height: 100%;
+    overflow: hidden;
 }
 
 .letter {
     position: absolute;
+    top: -36rem;
     font-size: 30rem;
 }

@@ -16,3 +16,18 @@ export async function wait(forMs: number) {
 export function randomNumber(from: number, to: number): number {
     return Math.floor(Math.random() * (to - from + 1) + from);
 }
+
+export function randomGaussian(min: number, max: number): number {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+
+    let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    num = num / 10.0 + 0.5;
+
+    if (num < 0 || num > 1) {
+        return randomGaussian(min, max);
+    }
+
+    return min + num * (max - min);
+}

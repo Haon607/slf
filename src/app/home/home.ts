@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {Background} from "../background/background";
 import {Memory} from "../service/memory.service";
-import { randomNumber, shuffleArray, wait } from "../utils";
+import { randomGaussian, shuffleArray, wait } from "../utils";
 import {TimerComponent} from "../timer/timer.component";
 import {Router} from '@angular/router';
 import {Letter} from '../service/letter';
@@ -161,9 +161,9 @@ export class Home {
                 const rect = el.getBoundingClientRect();
 
                 tl.to(el, {
-                    x: randomNumber(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
+                    x: randomGaussian(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
                     y: (window.innerHeight - rect.bottom + rect.height) * (letters.length - 1 === letter.index ? 0.5 : 1),
-                    rotate: randomNumber(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
+                    rotate: randomGaussian(-250, 250) * (letters.length - 1 === letter.index ? 0 : 1),
                     duration: duration,
                     autoAlpha: (letters.length - 1 === letter.index ? 0.5 : 0),
                     ease: "power2.inOut"

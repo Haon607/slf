@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef } from '@angula
 import gsap from "gsap";
 import { Letter } from "../service/letter";
 import { Memory } from "../service/memory.service";
+import { randomGaussian } from "../utils";
 
 @Component({
     selector: 'app-background',
@@ -47,21 +48,6 @@ export class Background implements AfterViewInit {
         this.positionLetters();
     }
 
-    private randomGaussian(min: number, max: number): number {
-        let u = 0, v = 0;
-        while (u === 0) u = Math.random();
-        while (v === 0) v = Math.random();
-
-        let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-        num = num / 10.0 + 0.5;
-
-        if (num < 0 || num > 1) {
-            return this.randomGaussian(min, max);
-        }
-
-        return min + num * (max - min);
-    }
-
     private positionLetters() {
         console.log(this.letters)
         for (const letter of this.letters.sort((a, b) => a.index! - b.index!)) {
@@ -83,9 +69,9 @@ export class Background implements AfterViewInit {
         await new Promise(resolve => setTimeout(resolve, 100));
 
         gsap.to(`#letter-${letter.index}`, {
-            x: this.randomGaussian((width / SPACE_MODIFIER) * -1, width / SPACE_MODIFIER),
-            y: this.randomGaussian((height / SPACE_MODIFIER) * -1, height / SPACE_MODIFIER),
-            rotate: this.randomGaussian(-80, 80),
+            x: randomGaussian((width / SPACE_MODIFIER) * -1, width / SPACE_MODIFIER),
+            y: randomGaussian((height / SPACE_MODIFIER) * -1, height / SPACE_MODIFIER),
+            rotate: randomGaussian(-80, 80),
             color: "#888888AA",
             duration: 1,
             autoAlpha: 1,
