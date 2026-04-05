@@ -116,6 +116,7 @@ export class Home {
 
     private async startCountdown() {
         const countdownAudio = new Audio('sounds/countdown.mp3');
+        countdownAudio.volume = 0.2;
         countdownAudio.play();
 
         this.countdownsRunning.push(countdownAudio);
@@ -177,7 +178,6 @@ export class Home {
         this.cdr.detectChanges();
 
         const scrambleAudio = new Audio('sounds/scramble.mp3');
-        scrambleAudio.volume = 0.1;
         scrambleAudio.play();
         await wait(100);
 
