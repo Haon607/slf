@@ -177,6 +177,7 @@ export class Home {
         this.cdr.detectChanges();
 
         const scrambleAudio = new Audio('sounds/scramble.mp3');
+        scrambleAudio.volume = 0.3;
         scrambleAudio.play();
         await wait(100);
 
