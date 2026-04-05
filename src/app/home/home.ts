@@ -116,7 +116,7 @@ export class Home {
 
     private async startCountdown() {
         const countdownAudio = new Audio('sounds/countdown.mp3');
-        countdownAudio.volume = 0.2;
+        countdownAudio.volume = 0.3;
         countdownAudio.play();
 
         this.countdownsRunning.push(countdownAudio);
